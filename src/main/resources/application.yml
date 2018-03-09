@@ -1,0 +1,23 @@
+#mongodb
+spring:
+  application:
+    name: spending
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: spending
+
+#logging
+logging:
+  file: logs/${spring.application.name}.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    root: INFO
+    org.springframework.data: DEBUG
+    com.spending: INFO
+    org.apache.http: INFO
+    org.springframework.web: INFO
+    org.springframework.web.data: INFO
