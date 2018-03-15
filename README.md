@@ -21,4 +21,4 @@
          
 ---
 
-![Open Source](opensource-logo.png) ![MIT license](mit-logo.png)
+[![Open Source](opensource-logo.png)](https://opensource.org/licenses/MIT) [![MIT license](mit-logo.png)](LICENSE)
