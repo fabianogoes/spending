@@ -1,24 +1,27 @@
 package com.spending;
 
+import com.spending.config.SwaggerConfiguration;
 import com.spending.model.RegistryType;
-import com.spending.service.RegistryService;
 import com.spending.service.RegistryTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @SpringBootApplication
-public class SpendingApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpendingApplication.class, args);
+		new SpringApplicationBuilder(
+				Application.class,
+				SwaggerConfiguration.class
+		).run(args);
 	}
 
 	@Autowired
