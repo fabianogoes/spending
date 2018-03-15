@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"name"})
-public class RegistryType {
+public class Category {
 
     @Id
     private String id;

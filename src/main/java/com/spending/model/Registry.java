@@ -19,5 +19,6 @@ public class Registry {
     private String description;
     private String type;
     private Double value;
+    private String category;
 
 }
