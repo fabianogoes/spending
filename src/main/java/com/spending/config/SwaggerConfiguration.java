@@ -22,6 +22,12 @@ public class SwaggerConfiguration {
     @Value("${info.version}")
     private String projectVersion;
 
+    @Value("${info.name}")
+    private String projectName;
+
+    @Value("${info.description}")
+    private String projectDescription;
+
     @Bean
     Docket rsApi() {
         return new Docket(DocumentationType.SWAGGER_12)
@@ -36,8 +42,8 @@ public class SwaggerConfiguration {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("Spending")
-            .description("Spending Control")
+            .title(projectName)
+            .description(projectDescription)
             .version(projectVersion)
             .build();
     }

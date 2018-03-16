@@ -5,11 +5,11 @@
 
 	<groupId>com</groupId>
 	<artifactId>spending</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>spending</name>
-	<description></description>
+	<name>Spending</name>
+	<description>Spending Control Open Source</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
