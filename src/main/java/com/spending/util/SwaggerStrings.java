@@ -13,4 +13,8 @@ public final class SwaggerStrings {
     public static final String CATEGORY_VALUE = "Category";
 
     public static final String CATEGORY_NOTES = "Service to manager Category";
+
+    public static final String TYPE_VALUE = "TypeRegistry";
+
+    public static final String TYPE_NOTES = "Service to manager Types of Regitry";
 }

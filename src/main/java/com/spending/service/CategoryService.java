@@ -2,9 +2,7 @@ package com.spending.service;
 
 import com.spending.exception.SpendingException;
 import com.spending.model.Category;
-import com.spending.model.RegistryType;
 import com.spending.repository.CategoryRepository;
-import com.spending.repository.RegistryTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,15 +31,11 @@ public class CategoryService {
         return this.repository.findAll();
     }
 
-    public List<Category> findAllDistinct(String name) {
-        return this.repository.findDistinctByName(name);
-    }
-
     public void deleteAll() {
         this.repository.deleteAll();
     }
 
-    public List<Category> findByName(String name){
+    public Category findByName(String name){
         return this.repository.findByName(name);
     }
 
@@ -49,7 +43,6 @@ public class CategoryService {
         Optional<Category> optional = this.repository.findById(categoryId);
         if(optional.isPresent())
             this.repository.delete(optional.get());
-
         throw new SpendingException("Category not found to delete!");
     }
 }

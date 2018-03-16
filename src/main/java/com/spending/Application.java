@@ -2,13 +2,11 @@ package com.spending;
 
 import com.spending.config.SwaggerConfiguration;
 import com.spending.model.Category;
-import com.spending.model.RegistryType;
-import com.spending.repository.CategoryRepository;
+import com.spending.model.Type;
 import com.spending.service.CategoryService;
-import com.spending.service.RegistryTypeService;
+import com.spending.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
@@ -28,28 +26,28 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Autowired
-	private RegistryTypeService registryTypeService;
+	private TypeService typeService;
 
 	@Autowired
 	private CategoryService categoryService;
 
 	@Bean
-	public List<RegistryType> getRegistryTypeAll() {
-		List<RegistryType> registryTypes = this.registryTypeService.findAll();
-		registryTypes.forEach(System.out::println);
-		return registryTypes;
+	public List<Type> getTypeAll() {
+		List<Type> types = this.typeService.findAll();
+		types.forEach(System.out::println);
+		return types;
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		this.registryTypeService.deleteAll();
+		this.typeService.deleteAll();
 		this.categoryService.deleteAll();
 
-		List<RegistryType> registryTypes = Arrays.asList(
-				RegistryType.builder().name("Outros").build(),
-				RegistryType.builder().name("Pagamento Boleto de Cobrança").pattern(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
-				RegistryType.builder().name("Transferência Bancária").pattern(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
-				RegistryType.builder().name("Pagamento Água, Luz, Telefone, TV e Gás").pattern(new HashSet<>(
+		List<Type> types = Arrays.asList(
+				Type.builder().name("Outros").build(),
+				Type.builder().name("Pagamento Boleto de Cobrança").pattern(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
+				Type.builder().name("Transferência Bancária").pattern(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
+				Type.builder().name("Pagamento Água, Luz, Telefone, TV e Gás").pattern(new HashSet<>(
 						Arrays.asList(
 								"Conta Telefone",
 								"Conta de Luz",
@@ -58,16 +56,16 @@ public class Application implements CommandLineRunner {
 								"Recarga Claro Pre Pago"
 						)
 				)).build(),
-				RegistryType.builder().name("Tributos (Impostos, Taxas ou Contribuições)").pattern(new HashSet<>(
+				Type.builder().name("Tributos (Impostos, Taxas ou Contribuições)").pattern(new HashSet<>(
 						Arrays.asList(
 								"Trib Internet B-pm Guarulhos",
 								"Trib Bradesco C-p.m S.p - Denatran"
 						)
 				)).build(),
-				RegistryType.builder().name("Pagamento Cartao Debito").pattern(new HashSet<>(Arrays.asList("Visa Electron"))).build(),
-				RegistryType.builder().name("Saque Caixa Automatico").pattern(new HashSet<>(Arrays.asList("Saque c/c Bdn", "sq c/c Bco24h"))).build(),
-				RegistryType.builder().name("Transferência Bancária").pattern(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
-				RegistryType.builder()
+				Type.builder().name("Pagamento Cartao Debito").pattern(new HashSet<>(Arrays.asList("Visa Electron"))).build(),
+				Type.builder().name("Saque Caixa Automatico").pattern(new HashSet<>(Arrays.asList("Saque c/c Bdn", "sq c/c Bco24h"))).build(),
+				Type.builder().name("Transferência Bancária").pattern(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
+				Type.builder()
 						.name("Debito em Conta")
 						.pattern(new HashSet<>(
 								Arrays.asList("Deb.automatico",
@@ -79,7 +77,7 @@ public class Application implements CommandLineRunner {
 						)
 						.build()
 		);
-		this.registryTypeService.save(registryTypes);
+		this.typeService.save(types);
 
 
 		List<Category> categories = Arrays.asList(

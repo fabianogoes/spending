@@ -32,10 +32,16 @@ public class LoadSheetBradescoImplService implements LoadSheetService {
             while (rowIterator.hasNext()) {
                 Row row = (Row)rowIterator.next();
 
-                // Descantando as 7 primeiras linhas
+                /**********************************************
+                 * Descantando as 7 primeiras linhas de Header
+                 **********************************************/
                 if(row.getRowNum() < 8){
                     System.out.println("row = " + row.getRowNum());
                     continue;
+                }
+
+                if("Total".equalsIgnoreCase(row.getCell(1).getStringCellValue())) {
+                    break;
                 }
 
                 Iterator cellIterator = row.cellIterator();
