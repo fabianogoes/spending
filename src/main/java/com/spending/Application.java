@@ -46,7 +46,13 @@ public class Application implements CommandLineRunner {
 		List<Type> types = Arrays.asList(
 				Type.builder().name("Outros").build(),
 				Type.builder().name("Pagamento Boleto de Cobrança").pattern(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
-				Type.builder().name("Transferência Bancária").pattern(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
+				Type.builder().name("Transferência Bancária").pattern(new HashSet<>(
+						Arrays.asList(
+								"Transf Fdos Doc",
+								"Transf Autoriz",
+								"Tr.aut.c/c/poup"
+						)
+				)).build(),
 				Type.builder().name("Pagamento Água, Luz, Telefone, TV e Gás").pattern(new HashSet<>(
 						Arrays.asList(
 								"Conta Telefone",
@@ -128,7 +134,15 @@ public class Application implements CommandLineRunner {
 				Category.builder().name("Saque").pattern(new HashSet<>(
 						Arrays.asList(
 								"Saque c/c Bdn",
-								"sq c/c Bco24h")
+								"sq c/c Bco24h"
+						)
+				)).build(),
+				Category.builder().name("Transferência").pattern(new HashSet<>(
+						Arrays.asList(
+								"Transf Fdos Doc",
+								"Transf Autoriz",
+								"Tr.aut.c/c/poup"
+						)
 				)).build(),
 				Category.builder().name("Cartão de Crédito").pattern(new HashSet<>(
 						Arrays.asList("Cobranca Cartao",

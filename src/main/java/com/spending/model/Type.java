@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
@@ -17,6 +18,7 @@ public class Type {
 
     @Id
     private String id;
+    @NotNull(message = "Name is required")
     private String name;
     private Set<String> pattern;
 

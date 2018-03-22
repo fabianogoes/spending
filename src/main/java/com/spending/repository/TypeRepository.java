@@ -5,11 +5,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface TypeRepository extends MongoRepository<Type, String> {
 
-//    List<Type> findDistinctByName(String name);
-    Type findByName(String name);
+    Optional<Type> findByName(String name);
 
 }
