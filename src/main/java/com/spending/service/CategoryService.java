@@ -2,6 +2,7 @@ package com.spending.service;
 
 import com.spending.model.Category;
 import com.spending.repository.CategoryRepository;
+import com.spending.repository.RegistryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -19,6 +20,9 @@ public class CategoryService {
 
     @Autowired
     private CategoryRepository repository;
+
+    @Autowired
+    private RegistryRepository registryRepository;
 
     public Category save(Category category) {
         Assert.notNull(category, CATEGORY_NOT_SHOULD_NULL);
@@ -40,6 +44,7 @@ public class CategoryService {
     }
 
     public List<Category> findAll() {
+        this.registryRepository.higherExpenses(5);
         return this.repository.findAll();
     }
 

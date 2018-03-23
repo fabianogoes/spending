@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RegistryRepository extends MongoRepository<Registry, String> {
+public interface RegistryRepository extends MongoRepository<Registry, String>, RegistryRepositoryCustom {
 
     boolean existsByDateAndDescriptionAndValue(String date, String description, Double value);
 
