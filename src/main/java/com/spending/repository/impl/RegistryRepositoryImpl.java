@@ -43,18 +43,19 @@ public class RegistryRepositoryImpl implements RegistryRepositoryCustom {
          }
          */
 
-        GroupOperation group = group(
-                fields()
-                        .and("category", "category")
-        )
-                .count().as("count")
-                .sum("value").as("total");
-
-        SortOperation sort = sort(Sort.Direction.DESC, "total");
+//        GroupOperation group = group(
+//                    fields()
+//                        .and("category", "category.name")
+//                )
+//                .count().as("count")
+//                .sum("value").as("total");
+//
+//        SortOperation sort = sort(Sort.Direction.DESC, "total");
 
         Aggregation aggregation = newAggregation(
-                group,
-                sort,
+                group(fields().and("category", "category")).count().as("count").sum("value").as("total"),
+                project("_id", "total", "count").and("category").previousOperation(),
+                sort(Sort.Direction.DESC, "total"),
                 limit(limit)
         );
 

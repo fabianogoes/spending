@@ -44,7 +44,7 @@ public class CategoryService {
     }
 
     public List<Category> findAll() {
-        this.registryRepository.higherExpenses(5);
+        this.registryRepository.higherExpenses(5).forEach(System.out::println);
         return this.repository.findAll();
     }
 
