@@ -33,9 +33,7 @@ public class Application implements CommandLineRunner {
 
 	@Bean
 	public List<Type> getTypeAll() {
-		List<Type> types = this.typeService.findAll();
-		types.forEach(System.out::println);
-		return types;
+		return this.typeService.findAll();
 	}
 
 	@Override
