@@ -16,5 +16,9 @@ public final class SwaggerStrings {
 
     public static final String TYPE_VALUE = "TypeRegistry";
 
-    public static final String TYPE_NOTES = "Service to manager Types of Regitry";
+    public static final String TYPE_NOTES = "Service to manager Types of Registry";
+
+    public static final String REGISTRY_VALUE = "Registry";
+
+    public static final String REGISTRY_NOTES = "Service to manager Registry";
 }

@@ -12,6 +12,10 @@
     - Categorias(Supermercado, Combustivel, Agua, Luz, Telefone, Saude, Transporte, etc...)     
 - API Tipos
 - API Categorias
+- API Registros
+- Ranking 
+    - Por Categoria
+    - Por Tipo
     
 ### Roadmap
 -----------
@@ -20,7 +24,7 @@
 - ~~API Categorias(Supermercado, Combustivel, Agua, Luz, Telefone, Saude, Transporte, etc...)~~
 - ~~API Dash - Ranking por Tipos~~
 - ~~API Dash - Ranking por Categorias~~
-- API Registros
+- ~~API Registros~~
 - Tela de Cadastro de Tipos
 - Tela de Cadastro de Categorias
 - Tela de Cadastro de Registros    
