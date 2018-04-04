@@ -5,3 +5,6 @@ mvnw
 mvnw.cmd
 target/
 *.iml
+
+front/dist
+front/node_modules
