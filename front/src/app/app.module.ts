@@ -8,12 +8,18 @@ import { CONST_ROUTING } from './app.routing';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu.component';
 import { DashComponent } from './dash.component';
+import { RegistryComponent } from './registry.component';
+import { CategoryComponent } from './category.component';
+import { TypeComponent } from './type.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    DashComponent
+    DashComponent,
+    RegistryComponent,
+    CategoryComponent,
+    TypeComponent
   ],
   imports: [
     BrowserModule,
