@@ -49,6 +49,7 @@ public class TypeController {
 
     @GetMapping
     public ResponseEntity getAll() {
+        log.info("getAll()...");
         return ResponseEntity.ok(this.service.findAll());
     }
 

@@ -2,7 +2,7 @@ import { RegistryComponent } from './registry.component';
 import { Routes, RouterModule } from '@angular/router';
 import { DashComponent } from './dash.component';
 import { CategoryComponent } from './category.component';
-import { TypeComponent } from './type.component';
+import { TypeComponent } from './type/type.component';
 const MAINMENU_ROUTES: Routes = [
     { path: '', redirectTo: '/dash', pathMatch: 'full' },
     { path: 'dash', component: DashComponent },

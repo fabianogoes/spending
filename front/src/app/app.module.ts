@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { CONST_ROUTING } from './app.routing';
 
+
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu.component';
 import { DashComponent } from './dash.component';
 import { RegistryComponent } from './registry.component';
 import { CategoryComponent } from './category.component';
-import { TypeComponent } from './type.component';
+import { TypeComponent } from './type/type.component';
+import { TypeServiceService } from './type/type-service.service';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,12 @@ import { TypeComponent } from './type.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule,
     FormsModule,
-    HttpModule,
     CONST_ROUTING
   ],
-  providers: [],
+  providers: [TypeServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 package com.spending;
 
 import com.spending.config.SwaggerConfiguration;
+import com.spending.config.WebConfiguration;
 import com.spending.model.Category;
 import com.spending.model.Type;
 import com.spending.service.CategoryService;
@@ -21,9 +22,11 @@ public class Application implements CommandLineRunner {
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(
 				Application.class,
-				SwaggerConfiguration.class
+				SwaggerConfiguration.class,
+				WebConfiguration.class
 		).run(args);
 	}
+
 
 	@Autowired
 	private TypeService typeService;

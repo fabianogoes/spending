@@ -8,3 +8,8 @@ target/
 
 front/dist
 front/node_modules
+
+.angulardoc.json
+back/.classpath
+back/.project
+back/.settings
