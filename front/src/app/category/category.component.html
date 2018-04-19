@@ -1,0 +1,63 @@
+<div class="page-header">
+    <h1>Categorias <small>categorias de lançamentos</small></h1>
+
+    <div class="panel panel-primary" *ngIf="enableEdit">
+      <div class="panel-body">
+        <form action="" #categoryForm = "ngForm" (ngSubmit)="onSave(categoryForm)">
+          <div class="col-md-2">
+            <label for="inputId">ID:</label>
+            <input type="text"
+                   id="inputId"
+                   class="form-control"
+                   [(ngModel)] = "category.id"
+                   name="id"
+                   readonly="readonly" />
+          </div>
+          <div class="col-md-8">
+              <label for="inputName">Nome:</label>
+              <input type="text"
+                     id="inputName"
+                     class="form-control"
+                     [(ngModel)] = "category.name"
+                     name="name"
+                     placeholder="Name" autofocus />
+          </div>
+          <div class="col-md-2">
+            <label>&nbsp;</label>
+            <button type="submit"
+                    class="btn btn-primary btn-block"
+                    [disabled]="!categoryForm.form.valid">
+                <i class="fa fa-save"></i> Salvar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="table-responsive" *ngIf="!enableEdit">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="col-md-1 text-center">ID</th>
+            <th>Nome</th>
+            <th class="col-md-1 text-center">
+              <button href="#" class="btn btn-sm btn-primary" (click)="onNew()" >
+                  <i class="fa fa-plus"></i> Novo
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let obj of categories">
+            <td class="text-center">{{obj.id}}</td>
+            <td>{{obj.name}}</td>
+            <td class="text-center">
+              <button href="#" class="btn btn-sm btn-warning" (click)="onFind(obj.id)" ><i class="fa fa-pencil"></i></button>
+              <button href="#" class="btn btn-sm btn-danger" (click)="onDelete(obj.id)" ><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>

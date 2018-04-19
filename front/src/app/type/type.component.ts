@@ -21,13 +21,13 @@ export class TypeComponent implements OnInit {
     localStorage.setItem('activeModule', 'type');
     this.enableEdit = false;
     this.type = new Type();
-    this.service.getTypesAll().subscribe(data => this.types = data);
+    this.service.findAll().subscribe(data => this.types = data);
   }
 
   public onSave({ value, valid}: { value: Type, valid: boolean }) {
     this.service.save(value)
       .subscribe(responseSave => {
-        this.service.getTypesAll().subscribe(data => this.types = data);
+        this.service.findAll().subscribe(data => this.types = data);
         this.enableEdit = false;
       });
     this.type = new Type();
@@ -36,7 +36,7 @@ export class TypeComponent implements OnInit {
   public onDelete(typeId) {
     console.log(`onDelete(${typeId})...`);
     this.service.delete(typeId).subscribe(responseDelete => {
-      this.service.getTypesAll().subscribe(data => this.types = data);
+      this.service.findAll().subscribe(data => this.types = data);
       this.enableEdit = false;
     });
     this.type = new Type();

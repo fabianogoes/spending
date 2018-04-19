@@ -28,9 +28,8 @@ public class CategoryController {
             notes = SwaggerStrings.CATEGORY_NOTES
     )
     @PostMapping
-    public ResponseEntity save(
-            @RequestBody Category category
-    ) {
+    public ResponseEntity save(@RequestBody Category category) {
+        log.info("save({})", category);
         this.service.save(category);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -44,18 +43,22 @@ public class CategoryController {
 
     @GetMapping("/{categoryId}")
     public ResponseEntity getOne(@PathVariable String categoryId) {
+        log.info("getOne({})...", categoryId);
         return ResponseEntity.ok(this.service.findOne(categoryId));
     }
 
     @GetMapping
     public ResponseEntity getAll() {
+        log.info("getAll()...");
         return ResponseEntity.ok(this.service.findAll());
     }
 
+    @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{categoryId}")
     public void delete(@PathVariable String categoryId){
-         this.service.delete(categoryId);
+        log.info("delete({})", categoryId);
+        this.service.delete(categoryId);
     }
 
 }

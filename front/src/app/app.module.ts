@@ -1,3 +1,4 @@
+import { CategoryServiceService } from './category/category-service.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +11,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu.component';
 import { DashComponent } from './dash.component';
 import { RegistryComponent } from './registry.component';
-import { CategoryComponent } from './category.component';
+import { CategoryComponent } from './category/category.component';
 import { TypeComponent } from './type/type.component';
 import { TypeServiceService } from './type/type-service.service';
 
@@ -30,7 +31,7 @@ import { TypeServiceService } from './type/type-service.service';
     FormsModule,
     CONST_ROUTING
   ],
-  providers: [TypeServiceService],
+  providers: [TypeServiceService, CategoryServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

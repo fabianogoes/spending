@@ -23,7 +23,7 @@ public class CategoryService {
     public Category save(Category category) {
         Assert.notNull(category, CATEGORY_NOT_SHOULD_NULL);
         Assert.notNull(category.getName(), CATEGORY_NAME_IS_REQUIRED);
-        return this.save(category);
+        return this.repository.save(category);
     }
 
     public List<Category> save(List<Category> categories) {
