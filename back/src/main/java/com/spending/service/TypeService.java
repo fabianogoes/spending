@@ -23,7 +23,7 @@ public class TypeService {
     public Type save(Type type) {
         Assert.notNull(type, TYPE_NOT_SHOULD_NULL);
         Assert.notNull(type.getName(), TYPE_NAME_IS_REQUIRED);
-        return this.save(type);
+        return this.repository.save(type);
     }
 
     public List<Type> save(List<Type> types) {

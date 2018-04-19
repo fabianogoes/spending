@@ -28,9 +28,8 @@ public class TypeController {
             notes = SwaggerStrings.TYPE_NOTES
     )
     @PostMapping
-    public ResponseEntity save(
-            @RequestBody Type type
-    ) {
+    public ResponseEntity save(@RequestBody Type type) {
+        log.info("save({})...", type);
         this.service.save(type);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -44,6 +43,7 @@ public class TypeController {
 
     @GetMapping("/{typeId}")
     public ResponseEntity getOne(@PathVariable String typeId) {
+        log.info("getOne({})", typeId);
         return ResponseEntity.ok(this.service.findOne(typeId));
     }
 
@@ -53,10 +53,12 @@ public class TypeController {
         return ResponseEntity.ok(this.service.findAll());
     }
 
+    @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{typeId}")
     public void delete(@PathVariable String typeId){
-         this.service.delete(typeId);
+        log.info("delete({})", typeId);
+        this.service.delete(typeId);
     }
 
 }

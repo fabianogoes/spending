@@ -22,8 +22,8 @@ public class Application implements CommandLineRunner {
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(
 				Application.class,
-				SwaggerConfiguration.class,
-				WebConfiguration.class
+				WebConfiguration.class,
+				SwaggerConfiguration.class
 		).run(args);
 	}
 

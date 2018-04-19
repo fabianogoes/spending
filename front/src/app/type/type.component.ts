@@ -9,8 +9,8 @@ import { TypeServiceService } from './type-service.service';
 })
 export class TypeComponent implements OnInit {
 
-  private id = 0;
   private type: Type;
+  public enableEdit: Boolean = false;
   public types: Array<Type>;
 
   constructor(private service: TypeServiceService) {
@@ -19,17 +19,40 @@ export class TypeComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('activeModule', 'type');
+    this.enableEdit = false;
     this.type = new Type();
     this.service.getTypesAll().subscribe(data => this.types = data);
   }
 
   public onSave({ value, valid}: { value: Type, valid: boolean }) {
-    const newType = new Type({
-      id: String(++this.id),
-      name: value.name,
-      pattern: value.pattern
+    this.service.save(value)
+      .subscribe(responseSave => {
+        this.service.getTypesAll().subscribe(data => this.types = data);
+        this.enableEdit = false;
+      });
+    this.type = new Type();
+  }
+
+  public onDelete(typeId) {
+    console.log(`onDelete(${typeId})...`);
+    this.service.delete(typeId).subscribe(responseDelete => {
+      this.service.getTypesAll().subscribe(data => this.types = data);
+      this.enableEdit = false;
     });
-    this.types.push(newType);
+    this.type = new Type();
+  }
+
+  public onFind(typeId) {
+    console.log(`onFind(${typeId})...`);
+    this.service.find(typeId).subscribe(responseFind => {
+      this.type = responseFind;
+      this.enableEdit = true;
+    });
+
+  }
+
+  public onNew() {
+    this.enableEdit = true;
     this.type = new Type();
   }
 

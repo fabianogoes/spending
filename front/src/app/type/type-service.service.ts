@@ -16,7 +16,24 @@ export class TypeServiceService {
   getTypesAll(): Observable<Type[]> {
     return this.http.get(this.url)
       .map((response: Response) => <Type[]>response.json())
-      // .do(data => console.log(JSON.stringify(data)))
+      .catch(this.handleError);
+  }
+
+  save(type: Type): Observable<any> {
+    return this.http.post(this.url, type)
+      .catch(this.handleError);
+  }
+
+  delete(typeId: string): Observable<any> {
+    const urlDelete = `${this.url}/${typeId}`;
+    return this.http.delete(urlDelete)
+      .catch(this.handleError);
+  }
+
+  find(typeId: string): Observable<Type> {
+    const urlFind = `${this.url}/${typeId}`;
+    return this.http.get(urlFind)
+      .map((response: Response) => <Type>response.json())
       .catch(this.handleError);
   }
 
