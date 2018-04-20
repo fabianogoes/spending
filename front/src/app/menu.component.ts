@@ -8,7 +8,8 @@ import { RouterModule, Routes } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

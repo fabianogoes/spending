@@ -9,28 +9,27 @@ import { TypeServiceService } from './type-service.service';
 })
 export class TypeComponent implements OnInit {
 
-  private type: Type;
-  public enableEdit: Boolean = false;
+  public type: Type;
+  public enableEdit: Boolean = true;
   public types: Array<Type>;
+  public pattern: string;
 
   constructor(private service: TypeServiceService) {
-
   }
 
   ngOnInit() {
-    localStorage.setItem('activeModule', 'type');
-    this.enableEdit = false;
+    this.enableEdit = true;
     this.type = new Type();
     this.service.findAll().subscribe(data => this.types = data);
   }
 
   public onSave({ value, valid}: { value: Type, valid: boolean }) {
+    value.patterns = this.type.patterns;
     this.service.save(value)
       .subscribe(responseSave => {
         this.service.findAll().subscribe(data => this.types = data);
         this.enableEdit = false;
       });
-    this.type = new Type();
   }
 
   public onDelete(typeId) {
@@ -39,7 +38,6 @@ export class TypeComponent implements OnInit {
       this.service.findAll().subscribe(data => this.types = data);
       this.enableEdit = false;
     });
-    this.type = new Type();
   }
 
   public onFind(typeId) {
@@ -54,6 +52,12 @@ export class TypeComponent implements OnInit {
   public onNew() {
     this.enableEdit = true;
     this.type = new Type();
+  }
+
+  public onAddPattern(){
+    this.type.patterns.push(this.pattern);
+    this.pattern = null;
+    console.log(this.type.patterns);
   }
 
 }

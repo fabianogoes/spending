@@ -55,8 +55,8 @@ public class RegistryService {
         Type typeResponse = null;
         List<Type> types = typeService.findAll();
         for (Type type : types) {
-            if(type.getPattern() == null) continue;
-            for(String p : type.getPattern()) {
+            if(type.getPatterns() == null) continue;
+            for(String p : type.getPatterns()) {
                 if(pattern.toLowerCase().contains(p.toLowerCase())){
                     typeResponse = type;
                     break;
@@ -71,8 +71,8 @@ public class RegistryService {
         Category categoryResponse = null;
         List<Category> categories = categoryService.findAll();
         for (Category categ : categories) {
-            if(categ.getPattern() == null) continue;
-            for(String p : categ.getPattern()) {
+            if(categ.getPatterns() == null) continue;
+            for(String p : categ.getPatterns()) {
                 if(pattern.toLowerCase().contains(p.toLowerCase())){
                     categoryResponse = categ;
                     break;

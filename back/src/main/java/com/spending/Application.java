@@ -46,15 +46,15 @@ public class Application implements CommandLineRunner {
 
 		List<Type> types = Arrays.asList(
 				Type.builder().name("Outros").build(),
-				Type.builder().name("Pagamento Boleto de Cobrança").pattern(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
-				Type.builder().name("Transferência Bancária").pattern(new HashSet<>(
+				Type.builder().name("Pagamento Boleto de Cobrança").patterns(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
+				Type.builder().name("Transferência Bancária").patterns(new HashSet<>(
 						Arrays.asList(
 								"Transf Fdos Doc",
 								"Transf Autoriz",
 								"Tr.aut.c/c/poup"
 						)
 				)).build(),
-				Type.builder().name("Pagamento Água, Luz, Telefone, TV e Gás").pattern(new HashSet<>(
+				Type.builder().name("Pagamento Água, Luz, Telefone, TV e Gás").patterns(new HashSet<>(
 						Arrays.asList(
 								"Conta Telefone",
 								"Conta de Luz",
@@ -63,18 +63,18 @@ public class Application implements CommandLineRunner {
 								"Recarga Claro Pre Pago"
 						)
 				)).build(),
-				Type.builder().name("Tributos (Impostos, Taxas ou Contribuições)").pattern(new HashSet<>(
+				Type.builder().name("Tributos (Impostos, Taxas ou Contribuições)").patterns(new HashSet<>(
 						Arrays.asList(
 								"Trib Internet B-pm Guarulhos",
 								"Trib Bradesco C-p.m S.p - Denatran"
 						)
 				)).build(),
-				Type.builder().name("Pagamento Cartao Debito").pattern(new HashSet<>(Arrays.asList("Visa Electron"))).build(),
-				Type.builder().name("Saque Caixa Automatico").pattern(new HashSet<>(Arrays.asList("Saque c/c Bdn", "sq c/c Bco24h"))).build(),
-				Type.builder().name("Transferência Bancária").pattern(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
+				Type.builder().name("Pagamento Cartao Debito").patterns(new HashSet<>(Arrays.asList("Visa Electron"))).build(),
+				Type.builder().name("Saque Caixa Automatico").patterns(new HashSet<>(Arrays.asList("Saque c/c Bdn", "sq c/c Bco24h"))).build(),
+				Type.builder().name("Transferência Bancária").patterns(new HashSet<>(Arrays.asList("Transf Fdos Doc"))).build(),
 				Type.builder()
 						.name("Debito em Conta")
-						.pattern(new HashSet<>(
+						.patterns(new HashSet<>(
 								Arrays.asList("Deb.automatico",
 											  "Enc Lim Credito Encargo",
 										      "Iof Util Limite",
@@ -89,12 +89,12 @@ public class Application implements CommandLineRunner {
 
 		List<Category> categories = Arrays.asList(
 				Category.builder().name("Outros").build(),
-				Category.builder().name("Mercado").pattern(new HashSet<>(
+				Category.builder().name("Mercado").patterns(new HashSet<>(
 						Arrays.asList(
 								"Supermercado",
 								"Mercado", "Wal Mart")
 				)).build(),
-				Category.builder().name("Transporte").pattern(new HashSet<>(
+				Category.builder().name("Transporte").patterns(new HashSet<>(
 						Arrays.asList(
 							"Estacionamento",
 							"Prestacao Carro",
@@ -104,18 +104,18 @@ public class Application implements CommandLineRunner {
 							"Cobranca Carro"
 						))
 				).build(),
-				Category.builder().name("Educação").pattern(new HashSet<>(
+				Category.builder().name("Educação").patterns(new HashSet<>(
 						Arrays.asList(
 								"Eniac",
 								"Unicsul",
 								"Escola Davi")
 				)).build(),
-				Category.builder().name("Saúde").pattern(new HashSet<>(Arrays.asList("Convenio Amil"))).build(),
-				Category.builder().name("Moradia").pattern(new HashSet<>(
+				Category.builder().name("Saúde").patterns(new HashSet<>(Arrays.asList("Convenio Amil"))).build(),
+				Category.builder().name("Moradia").patterns(new HashSet<>(
 						Arrays.asList("Condominio",
 								"Parc Cred Imob")
 				)).build(),
-				Category.builder().name("Telefone").pattern(new HashSet<>(
+				Category.builder().name("Telefone").patterns(new HashSet<>(
 						Arrays.asList(
 								"Claro Pre Pago",
 								"Telefone Telefonica",
@@ -123,41 +123,41 @@ public class Application implements CommandLineRunner {
 								"Conta Telefone"
 						)
 				)).build(),
-				Category.builder().name("Água").pattern(new HashSet<>(Arrays.asList("Agua"))).build(),
-				Category.builder().name("Luz").pattern(new HashSet<>(Arrays.asList("Luz"))).build(),
-				Category.builder().name("TV/Internet").pattern(new HashSet<>(Arrays.asList("tv p/assinatura Vivo"))).build(),
-				Category.builder().name("Tarifa Bancária").pattern(new HashSet<>(
+				Category.builder().name("Água").patterns(new HashSet<>(Arrays.asList("Agua"))).build(),
+				Category.builder().name("Luz").patterns(new HashSet<>(Arrays.asList("Luz"))).build(),
+				Category.builder().name("TV/Internet").patterns(new HashSet<>(Arrays.asList("tv p/assinatura Vivo"))).build(),
+				Category.builder().name("Tarifa Bancária").patterns(new HashSet<>(
 						Arrays.asList(
 								"Iof Util Limite",
 								"Tarifa Bancaria",
 								"Enc Lim Credito Encargo")
 				)).build(),
-				Category.builder().name("Saque").pattern(new HashSet<>(
+				Category.builder().name("Saque").patterns(new HashSet<>(
 						Arrays.asList(
 								"Saque c/c Bdn",
 								"sq c/c Bco24h"
 						)
 				)).build(),
-				Category.builder().name("Transferência").pattern(new HashSet<>(
+				Category.builder().name("Transferência").patterns(new HashSet<>(
 						Arrays.asList(
 								"Transf Fdos Doc",
 								"Transf Autoriz",
 								"Tr.aut.c/c/poup"
 						)
 				)).build(),
-				Category.builder().name("Cartão de Crédito").pattern(new HashSet<>(
+				Category.builder().name("Cartão de Crédito").patterns(new HashSet<>(
 						Arrays.asList("Cobranca Cartao",
 								"Cartao Credito Nubank")
 				)).build(),
-				Category.builder().name("Açougue").pattern(new HashSet<>(Arrays.asList("Jbs s a – açougue", "açougue", "Swfit Bosque Maia"))).build(),
-				Category.builder().name("Impostos").pattern(new HashSet<>(
+				Category.builder().name("Açougue").patterns(new HashSet<>(Arrays.asList("Jbs s a – açougue", "açougue", "Swfit Bosque Maia"))).build(),
+				Category.builder().name("Impostos").patterns(new HashSet<>(
 						Arrays.asList(
 								"Trib Internet B-pm Guarulhos sp",
 								"C-p.m S.p - Denatran",
 								"simples Nacional",
 								"inss/gps")
 				)).build(),
-				Category.builder().name("Lanches e Refeições").pattern(new HashSet<>(
+				Category.builder().name("Lanches e Refeições").patterns(new HashSet<>(
 						Arrays.asList(
 								"Acopiara Paralelo",
 								"Lojas Americanas",
@@ -173,7 +173,7 @@ public class Application implements CommandLineRunner {
 								"Fifty Cafe"
 						))
 				).build(),
-				Category.builder().name("Serviços").pattern(new HashSet<>(
+				Category.builder().name("Serviços").patterns(new HashSet<>(
 						Arrays.asList(
 								"Dest.alencars Contabilidade",
 								"Cgmp-sem Parar/sp",

@@ -1,38 +1,73 @@
 <div class="page-header">
   <h1>Tipos <small>tipos de lançamentos</small></h1>
+</div>
 
   <div class="panel panel-primary" *ngIf="enableEdit">
     <div class="panel-body">
       <form action="" #typeForm = "ngForm" (ngSubmit)="onSave(typeForm)">
-        <div class="col-md-2">
-          <label for="inputId">ID:</label>
-          <input type="text"
-                 id="inputId"
-                 class="form-control"
-                 [(ngModel)] = "type.id"
-                 name="id"
-                 readonly="readonly" />
-        </div>
-        <div class="col-md-8">
-            <label for="inputName">Nome:</label>
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="inputId">ID:</label>
             <input type="text"
-                   id="inputName"
-                   class="form-control"
-                   [(ngModel)] = "type.name"
-                   name="name"
-                   placeholder="Name" autofocus />
+                  id="inputId"
+                  class="form-control"
+                  [(ngModel)] = "type.id"
+                  name="id"
+                  readonly="readonly" />
+          </div>
+          <div class="col-md-8">
+              <label for="inputName">Nome:</label>
+              <input type="text"
+                    id="inputName"
+                    class="form-control"
+                    [(ngModel)] = "type.name"
+                    name="name"
+                    required="required"
+                    placeholder="Name" autofocus />
+          </div>
+          <div class="col-md-2">
+              <label>&nbsp;</label>
+              <button type="submit"
+                      class="btn btn-primary btn-block"
+                      [disabled]="type.patterns.length==0">
+                  <i class="fa fa-save"></i> Salvar
+              </button>
+          </div>
         </div>
-        <div class="col-md-2">
-          <label>&nbsp;</label>
-          <button type="submit"
-                  class="btn btn-primary btn-block"
-                  [disabled]="!typeForm.form.valid">
-              <i class="fa fa-save"></i> Salvar
-          </button>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-12">
+              <div class="input-group">
+                <input type="text" class="form-control" name="pattern" [(ngModel)]="pattern" placeholder="Digite um pattern...">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" (click)="onAddPattern()">
+                      <i class="fa fa-plus"></i>
+                  </button>
+                </span>
+              </div>
+          </div>
+
         </div>
+
+        <div class="row" *ngIf="type.patterns">
+          <div class="col-md-12">
+            <table class="table table-bordered">
+              <tbody class="text-center">
+                <tr *ngFor="let p of type.patterns">
+                  <td>{{p}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </form>
     </div>
   </div>
+
 
   <div class="table-responsive" *ngIf="!enableEdit">
     <table class="table table-striped table-bordered table-hover">
@@ -60,4 +95,3 @@
     </table>
   </div>
 
-</div>

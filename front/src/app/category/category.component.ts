@@ -12,10 +12,11 @@ export class CategoryComponent implements OnInit {
   private category: Category;
   public enableEdit: Boolean = false;
   public categories: Array<Category>;
-  constructor(private service: CategoryServiceService) { }
+
+  constructor(private service: CategoryServiceService) {
+  }
 
   ngOnInit() {
-    localStorage.setItem('activeModule', 'category');
     this.enableEdit = false;
     this.category = new Category();
     this.service.findAll().subscribe(data => this.categories = data);

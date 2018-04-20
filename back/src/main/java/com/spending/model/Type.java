@@ -20,6 +20,6 @@ public class Type {
     private String id;
     @NotNull(message = "Name is required")
     private String name;
-    private Set<String> pattern;
+    private Set<String> patterns;
 
 }

@@ -16,22 +16,22 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active">
-          <a [routerLink]="['/']" href="#">
-            <i class="fa fa-tachometer"></i> Dashboard <span class="sr-only">(current)</span>
+        <li [routerLinkActive]="['active']">
+          <a [routerLink]="['/dash']" href="#">
+            <i class="fa fa-tachometer"></i> Dashboard
           </a>
         </li>
-        <li>
+        <li [routerLinkActive]="['active']">
           <a [routerLink]="['/registry']" href="#">
             <i class="fa fa-dollar"></i> Lançamentos
           </a>
         </li>
-        <li>
+        <li [routerLinkActive]="['active']">
             <a [routerLink]="['/category']" href="#">
               <i class="fa fa-bookmark"></i> Categorias
             </a>
         </li>
-        <li>
+        <li [routerLinkActive]="['active']">
             <a [routerLink]="['/type']" href="#">
               <i class="fa fa-list"></i> Tipos
             </a>
