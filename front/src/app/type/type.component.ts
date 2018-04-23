@@ -18,17 +18,14 @@ export class TypeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.enableEdit = true;
-    this.type = new Type();
-    this.service.findAll().subscribe(data => this.types = data);
+    this.onList();
   }
 
-  public onSave({ value, valid}: { value: Type, valid: boolean }) {
-    value.patterns = this.type.patterns;
-    this.service.save(value)
+  public onSave() {
+    console.log(`onSave(${this.type})...`);
+    this.service.save(this.type)
       .subscribe(responseSave => {
-        this.service.findAll().subscribe(data => this.types = data);
-        this.enableEdit = false;
+        this.onFind(responseSave.id);
       });
   }
 
@@ -45,19 +42,47 @@ export class TypeComponent implements OnInit {
     this.service.find(typeId).subscribe(responseFind => {
       this.type = responseFind;
       this.enableEdit = true;
+      this.pattern = null;
     });
 
   }
 
   public onNew() {
+    console.log('onNew()...');
     this.enableEdit = true;
     this.type = new Type();
   }
 
+  public onList() {
+    console.log('onList()...');
+    this.enableEdit = false;
+    this.service.findAll().subscribe(data => this.types = data);
+  }
+
   public onAddPattern(){
+    console.log(this.type.patterns.indexOf(this.pattern));
+    const index = this.type.patterns.indexOf(this.pattern);
+    if (index > -1) { return; }
     this.type.patterns.push(this.pattern);
+    if (this.type.id) {
+      this.onSave();
+    }
     this.pattern = null;
-    console.log(this.type.patterns);
+  }
+
+  public onDeletePattern(pattern: string) {
+    console.log(`onDeletePattern(${this.type.id}, ${pattern})`);
+    this.service.deletePattern(this.type.id, pattern).subscribe(responseDelete => {
+      this.onFind(this.type.id);
+    });
+  }
+
+  public onRefresh() {
+    if (this.enableEdit) {
+      this.onFind(this.type.id);
+    } else {
+      this.onList();
+    }
   }
 
 }

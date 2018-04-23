@@ -9,26 +9,30 @@ import { Category } from './category';
 })
 export class CategoryComponent implements OnInit {
 
-  private category: Category;
+  public category: Category;
   public enableEdit: Boolean = false;
   public categories: Array<Category>;
+  public pattern: string;
 
   constructor(private service: CategoryServiceService) {
   }
 
   ngOnInit() {
+    this.onList();
+  }
+
+  public onList() {
     this.enableEdit = false;
     this.category = new Category();
     this.service.findAll().subscribe(data => this.categories = data);
   }
 
-  public onSave({ value, valid}: { value: Category, valid: boolean }) {
-    this.service.save(value)
+  public onSave() {
+    console.log(`onSave(${this.category})...`);
+    this.service.save(this.category)
       .subscribe(responseSave => {
-        this.service.findAll().subscribe(data => this.categories = data);
-        this.enableEdit = false;
+        this.onFind(responseSave.id);
       });
-    this.category = new Category();
   }
 
   public onDelete(categoryId) {
@@ -52,6 +56,32 @@ export class CategoryComponent implements OnInit {
   public onNew() {
     this.enableEdit = true;
     this.category = new Category();
+  }
+
+  public onRefresh() {
+    if (this.enableEdit) {
+      this.onFind(this.category.id);
+    } else {
+      this.onList();
+    }
+  }
+
+  public onAddPattern(){
+    console.log(this.category.patterns.indexOf(this.pattern));
+    const index = this.category.patterns.indexOf(this.pattern);
+    if (index > -1) { return; }
+    this.category.patterns.push(this.pattern);
+    if (this.category.id) {
+      this.onSave();
+    }
+    this.pattern = null;
+  }
+
+  public onDeletePattern(pattern: string) {
+    console.log(`onDeletePattern(${this.category.id}, ${pattern})`);
+    this.service.deletePattern(this.category.id, pattern).subscribe(responseDelete => {
+      this.onFind(this.category.id);
+    });
   }
 
 }

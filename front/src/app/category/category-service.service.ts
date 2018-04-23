@@ -19,8 +19,9 @@ export class CategoryServiceService {
       .catch(this.handleError);
   }
 
-  save(category: Category): Observable<any> {
+  save(category: Category): Observable<Category> {
     return this.http.post(this.url, category)
+      .map((response: Response) => <Category>response.json())
       .catch(this.handleError);
   }
 
@@ -34,6 +35,12 @@ export class CategoryServiceService {
     const urlFind = `${this.url}/${categoryId}`;
     return this.http.get(urlFind)
       .map((response: Response) => <Category>response.json())
+      .catch(this.handleError);
+  }
+
+  deletePattern(typeId: string, pattern: string): Observable<any> {
+    const urlDelete = `${this.url}/${typeId}/pattern/${pattern}`;
+    return this.http.delete(urlDelete)
       .catch(this.handleError);
   }
 

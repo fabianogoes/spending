@@ -29,16 +29,17 @@ public class CategoryController {
     )
     @PostMapping
     public ResponseEntity save(@RequestBody Category category) {
-        log.info("save({})", category);
+        log.info("save({})...", category);
         this.service.save(category);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(category.getId()).toUri();
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentRequest().path("/{id}")
+//                .buildAndExpand(type.getId()).toUri();
 
         if(category.getId() == null)
-            return ResponseEntity.created(location).build();
+            return new ResponseEntity(category, HttpStatus.CREATED);
 
-        return ResponseEntity.accepted().build();
+//        return ResponseEntity.accepted().build();
+        return new ResponseEntity(category, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{categoryId}")
@@ -59,6 +60,14 @@ public class CategoryController {
     public void delete(@PathVariable String categoryId){
         log.info("delete({})", categoryId);
         this.service.delete(categoryId);
+    }
+
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{typeId}/pattern/{pattern}")
+    public void deletePattern(@PathVariable String typeId, @PathVariable String pattern){
+        log.info("deletePattern({}, {})", typeId, pattern);
+        this.service.deletePattern(typeId, pattern);
     }
 
 }

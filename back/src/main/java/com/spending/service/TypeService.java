@@ -59,4 +59,13 @@ public class TypeService {
         Assert.isTrue(optional.isPresent(), TYPE_NOT_FOUND);
         return optional.get();
     }
+
+    public void deletePattern(String typeId, String pattern) {
+        Assert.notNull(typeId, TYPE_ID_NOT_SHOULD_NULL);
+        Optional<Type> optional = this.repository.findById(typeId);
+        Assert.isTrue(optional.isPresent(), TYPE_NOT_FOUND);
+        Assert.isTrue(optional.get().getPatterns().contains(pattern), "Type/Pattern not found");
+        optional.get().getPatterns().remove(pattern);
+        this.repository.save(optional.get());
+    }
 }

@@ -2,7 +2,7 @@ export class Category {
 
   id: string;
   name: string;
-  pattern: string[];
+  patterns: string[] = [];
 
   constructor(values: Object = {}) {
     // Constructor initialization

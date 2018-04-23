@@ -19,8 +19,9 @@ export class TypeServiceService {
       .catch(this.handleError);
   }
 
-  save(type: Type): Observable<any> {
+  save(type: Type): Observable<Type> {
     return this.http.post(this.url, type)
+      .map((response: Response) => <Type>response.json())
       .catch(this.handleError);
   }
 
@@ -34,6 +35,12 @@ export class TypeServiceService {
     const urlFind = `${this.url}/${typeId}`;
     return this.http.get(urlFind)
       .map((response: Response) => <Type>response.json())
+      .catch(this.handleError);
+  }
+
+  deletePattern(typeId: string, pattern: string): Observable<any> {
+    const urlDelete = `${this.url}/${typeId}/pattern/${pattern}`;
+    return this.http.delete(urlDelete)
       .catch(this.handleError);
   }
 

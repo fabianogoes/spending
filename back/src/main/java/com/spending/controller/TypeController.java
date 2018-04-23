@@ -31,14 +31,15 @@ public class TypeController {
     public ResponseEntity save(@RequestBody Type type) {
         log.info("save({})...", type);
         this.service.save(type);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(type.getId()).toUri();
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentRequest().path("/{id}")
+//                .buildAndExpand(type.getId()).toUri();
 
         if(type.getId() == null)
-            return ResponseEntity.created(location).build();
+            return new ResponseEntity(type, HttpStatus.CREATED);
 
-        return ResponseEntity.accepted().build();
+//        return ResponseEntity.accepted().build();
+        return new ResponseEntity(type, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{typeId}")
@@ -59,6 +60,14 @@ public class TypeController {
     public void delete(@PathVariable String typeId){
         log.info("delete({})", typeId);
         this.service.delete(typeId);
+    }
+
+    @CrossOrigin
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{typeId}/pattern/{pattern}")
+    public void deletePattern(@PathVariable String typeId, @PathVariable String pattern){
+        log.info("deletePattern({}, {})", typeId, pattern);
+        this.service.deletePattern(typeId, pattern);
     }
 
 }
