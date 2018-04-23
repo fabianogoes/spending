@@ -27,7 +27,7 @@
 
     <div class="panel panel-primary" *ngIf="enableEdit">
       <div class="panel-body">
-        <form action="" #categoryForm = "ngForm" (ngSubmit)="onSave(categoryForm)">
+        <form action="" #categoryForm = "ngForm" (ngSubmit)="onSave()">
 
           <div class="row">
 
@@ -63,6 +63,7 @@
           <br>
           <div class="row">
               <div class="col-md-12">
+                <label for="">Digite um Pattern:</label>
                 <div class="input-group">
                   <input type="text" class="form-control" name="pattern" [(ngModel)]="pattern" placeholder="Digite um pattern...">
                   <span class="input-group-btn">
@@ -73,8 +74,6 @@
                 </div><!-- /input-group -->
               </div><!-- /col-md-12 -->
           </div><!-- /row -->
-
-            <br>
 
             <div class="row" *ngIf="category.patterns">
               <div class="col-md-12">

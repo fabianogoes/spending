@@ -10,18 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
 
 @Api
 @Slf4j
 @RestController
-@RequestMapping("/register")
+@RequestMapping("/registries")
 public class RegistryController {
 
     @Autowired
-    private RegistryService registerService;
+    private RegistryService service;
 
     @ApiOperation(
             value = SwaggerStrings.TYPE_VALUE,
@@ -29,31 +26,34 @@ public class RegistryController {
     )
     @PostMapping
     public ResponseEntity post(@RequestBody Registry registry) {
-        this.registerService.save(registry);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest().path("/{id}")
-                .buildAndExpand(registry.getId()).toUri();
+        log.info("save({})...", registry);
+        this.service.save(registry);
+//        URI location = ServletUriComponentsBuilder
+//                .fromCurrentRequest().path("/{id}")
+//                .buildAndExpand(type.getId()).toUri();
 
         if(registry.getId() == null)
-            return ResponseEntity.created(location).build();
+            return new ResponseEntity(registry, HttpStatus.CREATED);
 
-        return ResponseEntity.accepted().build();
+//        return ResponseEntity.accepted().build();
+        return new ResponseEntity(registry, HttpStatus.ACCEPTED);
     }
 
     @GetMapping
     public ResponseEntity getAll() {
-        return ResponseEntity.ok(this.registerService.findAll());
+        return ResponseEntity.ok(this.service.findAll());
     }
 
     @GetMapping("/{registryId}")
     public ResponseEntity getOne(@PathVariable String registryId) {
-        return ResponseEntity.ok(this.registerService.findOne(registryId));
+        return ResponseEntity.ok(this.service.findOne(registryId));
     }
 
+    @CrossOrigin
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{registryId}")
     public void delete(@PathVariable String registryId){
-        this.registerService.delete(registryId);
+        this.service.delete(registryId);
     }
 
 }

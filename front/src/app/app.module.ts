@@ -1,4 +1,4 @@
-import { CategoryServiceService } from './category/category-service.service';
+import { CategoryService } from './category/category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -8,12 +8,15 @@ import { CONST_ROUTING } from './app.routing';
 
 
 import { AppComponent } from './app.component';
-import { MenuComponent } from './menu.component';
-import { DashComponent } from './dash.component';
-import { RegistryComponent } from './registry.component';
+import { MenuComponent } from './menu/menu.component';
+import { DashComponent } from './dash/dash.component';
+import { RegistryComponent } from './registry/registry.component';
 import { CategoryComponent } from './category/category.component';
 import { TypeComponent } from './type/type.component';
-import { TypeServiceService } from './type/type-service.service';
+import { TypeService } from './type/type.service';
+import { UploadComponent } from './upload/upload.component';
+import { UploadService } from './upload/upload.service';
+import { RegistryService } from './registry/regitry.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { TypeServiceService } from './type/type-service.service';
     DashComponent,
     RegistryComponent,
     CategoryComponent,
-    TypeComponent
+    TypeComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,12 @@ import { TypeServiceService } from './type/type-service.service';
     FormsModule,
     CONST_ROUTING
   ],
-  providers: [TypeServiceService, CategoryServiceService],
+  providers: [
+    TypeService,
+    CategoryService,
+    UploadService,
+    RegistryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

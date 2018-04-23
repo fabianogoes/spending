@@ -1,4 +1,4 @@
-import { Category } from './category';
+import { Type } from './type';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -7,34 +7,34 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
 @Injectable()
-export class CategoryServiceService {
+export class TypeService {
 
-  private url = 'http://localhost:8080/categories';
+  private url = 'http://localhost:8080/types';
 
   constructor(private http: Http) { }
 
-  findAll(): Observable<Category[]> {
+  findAll(): Observable<Type[]> {
     return this.http.get(this.url)
-      .map((response: Response) => <Category[]>response.json())
+      .map((response: Response) => <Type[]>response.json())
       .catch(this.handleError);
   }
 
-  save(category: Category): Observable<Category> {
-    return this.http.post(this.url, category)
-      .map((response: Response) => <Category>response.json())
+  save(type: Type): Observable<Type> {
+    return this.http.post(this.url, type)
+      .map((response: Response) => <Type>response.json())
       .catch(this.handleError);
   }
 
-  delete(categoryId: string): Observable<any> {
-    const urlDelete = `${this.url}/${categoryId}`;
+  delete(typeId: string): Observable<any> {
+    const urlDelete = `${this.url}/${typeId}`;
     return this.http.delete(urlDelete)
       .catch(this.handleError);
   }
 
-  find(categoryId: string): Observable<Category> {
-    const urlFind = `${this.url}/${categoryId}`;
+  find(typeId: string): Observable<Type> {
+    const urlFind = `${this.url}/${typeId}`;
     return this.http.get(urlFind)
-      .map((response: Response) => <Category>response.json())
+      .map((response: Response) => <Type>response.json())
       .catch(this.handleError);
   }
 

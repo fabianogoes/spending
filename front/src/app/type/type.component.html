@@ -64,6 +64,7 @@
 
         <div class="row">
           <div class="col-md-12">
+            <label for="">Digite um pattern:</label>
             <div class="input-group">
               <input type="text" class="form-control" name="pattern" [(ngModel)]="pattern" placeholder="Digite um pattern...">
               <span class="input-group-btn">
@@ -74,8 +75,6 @@
             </div><!-- /input-group -->
           </div><!-- /col-md-12 -->
         </div><!-- /row -->
-
-        <br>
 
         <div class="row" *ngIf="type.patterns">
           <div class="col-md-12">

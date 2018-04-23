@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Type } from './type';
-import { TypeServiceService } from './type-service.service';
+import { TypeService } from './type.service';
 
 @Component({
   selector: 'app-type',
@@ -14,7 +14,7 @@ export class TypeComponent implements OnInit {
   public types: Array<Type>;
   public pattern: string;
 
-  constructor(private service: TypeServiceService) {
+  constructor(private service: TypeService) {
   }
 
   ngOnInit() {

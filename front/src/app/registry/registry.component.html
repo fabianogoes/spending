@@ -1,0 +1,128 @@
+<div class="page-header">
+  <h1>
+    Lançamentos <small>lançamentos financeiro mensal</small>
+    <button type="button"
+            *ngIf="enableEdit"
+            class="btn btn-default btn-sm pull-right"
+            (click)="onList()"
+            title="Visualizar lista de Categorias...">
+      <i class="fa fa-tasks"></i>
+    </button>
+    <button type="button"
+            class="btn btn-success btn-sm pull-right"
+            (click)="onRefresh()"
+            title="Atualizar a tela...">
+      <i class="fa fa-refresh"></i>
+    </button>
+  </h1>
+</div>
+
+<div class="panel panel-primary" *ngIf="enableEdit">
+    <div class="panel-body">
+      <form>
+
+          <div class="row">
+              <div class="col-md-2">
+                <label for="inputId">ID:</label>
+                <input type="text"
+                      id="inputId"
+                      class="form-control"
+                      [(ngModel)] = "registry.id"
+                      name="id"
+                      readonly="readonly" />
+              </div>
+              <div class="col-md-10">
+                  <label for="inputName">Descrição:</label>
+                  <input type="text"
+                        id="inputDescription"
+                        class="form-control"
+                        [(ngModel)] = "registry.description"
+                        name="description"
+                        placeholder="Descrição..." autofocus />
+              </div>
+          </div><!-- /row -->
+          <br>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="inputName">Data:</label>
+              <input type="text"
+                    id="inputDate"
+                    class="form-control"
+                    [(ngModel)] = "registry.date"
+                    name="date"
+                    placeholder="dd/mm/yy"/>
+            </div>
+            <div class="col-md-3">
+              <label for="">Categoria</label>
+              <input type="text"
+                    id="inputCategory"
+                    class="form-control"
+                    [(ngModel)] = "registry.category.name"
+                    name="category"/>
+            </div>
+            <div class="col-md-4">
+                <label for="">Tipo</label>
+                <input type="text"
+                       id="inputCategory"
+                       class="form-control"
+                       [(ngModel)] = "registry.type.name"
+                       name="type"/>
+
+            </div>
+            <div class="col-md-3">
+              <label for="inputName">Valor:</label>
+              <input type="text"
+                    id="inputValue"
+                    class="form-control"
+                    [(ngModel)] = "registry.value"
+                    name="value"
+                    placeholder="00.00"/>
+            </div>
+          </div><!-- /row -->
+
+          <!-- <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <label>&nbsp;</label>
+                <button type="button"
+                        class="btn btn-primary btn-block"
+                        [disabled]="registry.description != null"
+                        (click)="onSave()">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+            </div>
+          </div> -->
+
+      </form>
+    </div>
+  </div>
+
+
+<div class="table-responsive" *ngIf="!enableEdit" style="width:100%; height:400px; overflow: auto;">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-1 text-center">ID</th>
+        <th>Nome</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th class="col-md-1 text-center">
+          <i class="fa fa-tasks"></i>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let obj of registries">
+        <td class="text-center">{{obj.id}}</td>
+        <td>{{obj.description}}</td>
+        <!-- <td>{{obj.date | date:'dd/MM/yyyy'}}</td> -->
+        <td>{{obj.date}}</td>
+        <td>{{obj.value | currency:'BRL':true:'1.2-2'}}</td>
+        <td class="text-center">
+          <a class="btn btn-sm btn-warning" (click)="onFind(obj.id)"><i class="fa fa-pencil"></i></a>
+          <a class="btn btn-sm btn-danger" (click)="onDelete(obj.id)"><i class="fa fa-trash"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

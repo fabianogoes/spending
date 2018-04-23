@@ -34,3 +34,9 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 ### Angular 4 
 
 [Reference](https://medium.com/codingthesmartway-com-blog/using-bootstrap-with-angular-c83c3cee3f4a)
+
+#### Commands
+
+```
+ng g c Menu -is --spec false --flat
+```

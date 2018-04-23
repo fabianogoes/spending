@@ -1,4 +1,4 @@
-import { CategoryServiceService } from './category-service.service';
+import { CategoryService } from './category.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from './category';
 
@@ -14,7 +14,7 @@ export class CategoryComponent implements OnInit {
   public categories: Array<Category>;
   public pattern: string;
 
-  constructor(private service: CategoryServiceService) {
+  constructor(private service: CategoryService) {
   }
 
   ngOnInit() {
@@ -50,7 +50,6 @@ export class CategoryComponent implements OnInit {
       this.category = responseFind;
       this.enableEdit = true;
     });
-
   }
 
   public onNew() {
@@ -66,7 +65,7 @@ export class CategoryComponent implements OnInit {
     }
   }
 
-  public onAddPattern(){
+  public onAddPattern() {
     console.log(this.category.patterns.indexOf(this.pattern));
     const index = this.category.patterns.indexOf(this.pattern);
     if (index > -1) { return; }

@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>
+    Upload <small>upload de estratos bancário</small>
+  </h1>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <label>Selecione um arquivo</label>
+    <input type="file" class="form-control" id="file" multiple (change)="getFileDetails($event)">
+    <br>
+    <button (click)="onUpload()" class="btn btn-primary pull-right" >
+        <i class="fa fa-upload"></i> Upload
+    </button>
+  </div>
+</div>
