@@ -13,7 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"name"})
-public class Category {
+public class Category extends BaseMongoModel {
 
     @Id
     private String id;

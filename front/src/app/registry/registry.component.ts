@@ -3,7 +3,6 @@ import { RegistryService } from './regitry.service';
 import { Component, OnInit } from '@angular/core';
 import { Registry } from './registry';
 import { Type } from '../type/type';
-import { stringify } from '@angular/core/src/facade/lang';
 
 @Component({
   selector: 'app-registry',
@@ -33,7 +32,7 @@ export class RegistryComponent implements OnInit {
   }
 
   onSave() {
-    console.log(`onSave( ${JSON.stringify(this.registry)})...`);
+    console.log(`onSave()...`);
     this.service.save(this.registry)
       .subscribe(responseSave => {
         this.onFind(responseSave.id);

@@ -1,5 +1,6 @@
 package com.spending.service;
 
+import com.spending.exception.SpendingException;
 import com.spending.model.Category;
 import com.spending.model.Registry;
 import com.spending.model.Type;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RegistryService {
@@ -22,17 +24,37 @@ public class RegistryService {
     private CategoryService categoryService;
 
     public Registry save(Registry registry){
-        Type type = this.getType(registry.getDescription());
-        Category category = this.getCategory(registry.getDescription());
-
-        registry.setType(type);
-        registry.setCategory(category)
-        ;
+        this.setTypeByMatchPattern(registry);
+        this.setCategoryByMatchPattern(registry);
         return this.repository.save(registry);
     }
 
+    private Registry setCategoryByMatchPattern(Registry registry) {
+        Category category = this.getCategory(registry.getDescription());
+        registry.setCategory(category);
+        return registry;
+    }
+
+    private Registry setTypeByMatchPattern(Registry registry) {
+        Type type = this.getType(registry.getDescription());
+        registry.setType(type);
+        return registry;
+    }
+
+    public void save(List<Registry> registries){
+        registries.forEach(registry -> {
+            registry = this.setTypeByMatchPattern(registry);
+            registry = this.setCategoryByMatchPattern(registry);
+            this.repository.save(registry);
+        });
+    }
+
     public Registry findOne(String id){
-        return this.repository.findById(id).get();
+        Optional<Registry> optional = this.repository.findById(id);
+        if(!optional.isPresent()) {
+            throw new SpendingException(String.format("Registry(%s) not found", id));
+        }
+        return optional.get();
     }
 
     public List<Registry> findAll() {
@@ -41,6 +63,10 @@ public class RegistryService {
 
     public void delete(String id) {
         this.repository.deleteById(id);
+    }
+
+    public void deleteAll() {
+        this.repository.deleteAll();
     }
 
     public boolean exist(Registry registry) {
@@ -62,7 +88,7 @@ public class RegistryService {
                     break;
                 }
             }
-            if(typeResponse != null) break;;
+            if(typeResponse != null) break;
         }
         if(typeResponse == null) typeResponse = typeService.findByName("Outros");
         return typeResponse;
@@ -78,7 +104,7 @@ public class RegistryService {
                     break;
                 }
             }
-            if(categoryResponse != null) break;;
+            if(categoryResponse != null) break;
         }
         if(categoryResponse == null) categoryResponse = categoryService.findByName("Outros");
         return categoryResponse;

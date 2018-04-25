@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class LoadSheetBradescoImplService implements LoadSheetService {
@@ -24,6 +26,7 @@ public class LoadSheetBradescoImplService implements LoadSheetService {
     @Override
     public LoadResponseDTO load(MultipartFile multipartFile) {
         LoadResponseDTO loadResponseDTO = new LoadResponseDTO();
+        List<Registry> registryToSave = new ArrayList<>();
         try{
             HSSFWorkbook workbook = new HSSFWorkbook(multipartFile.getInputStream());
             HSSFSheet sheet = workbook.getSheetAt(0);
@@ -36,7 +39,6 @@ public class LoadSheetBradescoImplService implements LoadSheetService {
                  * Descantando as 7 primeiras linhas de Header
                  **********************************************/
                 if(row.getRowNum() < 8){
-                    System.out.println("row = " + row.getRowNum());
                     continue;
                 }
 
@@ -81,10 +83,12 @@ public class LoadSheetBradescoImplService implements LoadSheetService {
                     Registry registry = Registry.builder().date(date).description(description).value(Double.parseDouble(value)).build();
                     if(!this.registryService.exist(registry)) {
                         totalPersisted++;
-                        this.registryService.save(registry);
+                        registryToSave.add(registry);
                     }
                 }
             }
+            this.registryService.deleteAll();
+            this.registryService.save(registryToSave);
             workbook.close();
             loadResponseDTO.setTotalPersisted(totalPersisted);
         } catch (FileNotFoundException e) {

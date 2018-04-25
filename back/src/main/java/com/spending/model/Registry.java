@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @EqualsAndHashCode(of = {"date", "description", "value"})
 @Data
 @Document
-public class Registry {
+public class Registry extends BaseMongoModel {
 
     @Id
     private String id;

@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = {"name"})
-public class Type {
+public class Type extends BaseMongoModel {
 
     @Id
     private String id;

@@ -1,5 +1,6 @@
 package com.spending;
 
+import com.spending.config.MongoConfiguration;
 import com.spending.config.SwaggerConfiguration;
 import com.spending.config.WebConfiguration;
 import com.spending.model.Category;
@@ -20,10 +21,10 @@ import java.util.List;
 public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		new SpringApplicationBuilder(
-				Application.class,
-				WebConfiguration.class,
-				SwaggerConfiguration.class
+		new SpringApplicationBuilder(Application.class,
+//				WebConfiguration.class,
+				SwaggerConfiguration.class,
+				MongoConfiguration.class
 		).run(args);
 	}
 
