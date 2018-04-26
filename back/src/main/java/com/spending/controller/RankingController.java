@@ -26,6 +26,7 @@ public class RankingController {
             @ApiParam(value = "limit", defaultValue = "5", name = "limit")
             @PathVariable(value = "limit", required = false, name = "limit") Integer limit
     ) {
+        log.info("topByCategory()...");
         return ResponseEntity.ok(this.rankingService.topByCategory(limit));
     }
 
@@ -34,6 +35,7 @@ public class RankingController {
             @ApiParam(value = "limit", defaultValue = "5", name = "limit")
             @PathVariable(value = "limit", required = false, name = "limit") Integer limit
     ) {
+        log.info("topByType()...");
         return ResponseEntity.ok(this.rankingService.topByType(limit));
     }
 

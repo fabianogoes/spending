@@ -13,9 +13,10 @@
 - API Tipos
 - API Categorias
 - API Registros
-- Ranking 
-    - Por Categoria
-    - Por Tipo
+- Dash
+    - Ranking 
+        - Por Categoria
+        - Por Tipo
     
 ### Roadmap
 -----------
@@ -27,7 +28,7 @@
 - ~~API Registros~~
 - ~~Tela de Cadastro de Tipos~~
 - ~~Tela de Cadastro de Categorias~~
-- Tela de Cadastro de Registros    
+- ~~Tela de Cadastro de Registros~~
 - API Upload de extrato bancario em arquivo xls (Layout Itau)
          
 ---

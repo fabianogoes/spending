@@ -47,7 +47,7 @@ public class Application implements CommandLineRunner {
 
 		List<Type> types = Arrays.asList(
 				Type.builder().name("Outros").build(),
-				Type.builder().name("Pagamento Boleto de Cobrança").patterns(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
+				Type.builder().name("Pagamento de Boleto").patterns(new HashSet<>(Arrays.asList("Pagto Cobranca", "Pagamento Cobrança"))).build(),
 				Type.builder().name("Transferência Bancária").patterns(new HashSet<>(
 						Arrays.asList(
 								"Transf Fdos Doc",

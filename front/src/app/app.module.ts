@@ -17,6 +17,7 @@ import { TypeService } from './type/type.service';
 import { UploadComponent } from './upload/upload.component';
 import { UploadService } from './upload/upload.service';
 import { RegistryService } from './registry/regitry.service';
+import { DashService } from './dash/dash.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RegistryService } from './registry/regitry.service';
     TypeService,
     CategoryService,
     UploadService,
-    RegistryService
+    RegistryService,
+    DashService
   ],
   bootstrap: [AppComponent]
 })

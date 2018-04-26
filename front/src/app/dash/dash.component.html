@@ -1,31 +1,51 @@
 <div class="row">
-  <div class="col-md-4">
-      <div class="panel panel-danger">
+  <div class="col-md-6">
+      <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Maiores gastos por Categoria</h3>
+            <h2 class="panel-title">Maiores gastos por Categoria</h2>
           </div>
           <div class="panel-body">
-            Panel content
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Categoria</th>
+                  <th>Valor</th>
+                  <th class="text-center">QTD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let obj of rankingByCategory">
+                    <td>{{obj.category.name}}</td>
+                    <td>{{obj.total | currency:'BRL':true:'1.2-2'}}</td>
+                    <td class="text-center">{{obj.count}}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
   </div>
-  <div class="col-md-4">
-      <div class="panel panel-danger">
+  <div class="col-md-6">
+      <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Maiores gastos por Tipo</h3>
+            <h2 class="panel-title">Maiores gastos por Tipo</h2>
           </div>
           <div class="panel-body">
-            Panel content
-          </div>
-        </div>
-  </div>
-  <div class="col-md-4">
-      <div class="panel panel-danger">
-          <div class="panel-heading">
-            <h3 class="panel-title">Total de Gastos no mês</h3>
-          </div>
-          <div class="panel-body">
-            Panel content
+              <table class="table">
+                  <thead>
+                      <tr>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th class="text-center">QTD</th>
+                      </tr>
+                    </thead>
+                <tbody>
+                  <tr *ngFor="let obj of rankingByType">
+                      <td>{{obj.type.name}}</td>
+                      <td>{{obj.total | currency:'BRL':true:'1.2-2'}}</td>
+                      <td class="text-center">{{obj.count}}</td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
         </div>
   </div>
