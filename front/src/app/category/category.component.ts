@@ -13,6 +13,7 @@ export class CategoryComponent implements OnInit {
   public enableEdit: Boolean = false;
   public categories: Array<Category>;
   public pattern: string;
+  public categoriesLength: number;
 
   constructor(private service: CategoryService) {
   }
@@ -24,7 +25,10 @@ export class CategoryComponent implements OnInit {
   public onList() {
     this.enableEdit = false;
     this.category = new Category();
-    this.service.findAll().subscribe(data => this.categories = data);
+    this.service.findAll().subscribe(data => {
+      this.categories = data;
+      this.categoriesLength = this.categories.length;
+    });
   }
 
   public onSave() {

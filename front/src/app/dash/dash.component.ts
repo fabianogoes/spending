@@ -20,5 +20,4 @@ export class DashComponent implements OnInit {
     this.service.getRankingByType().subscribe(data => this.rankingByType = data);
   }
 
-
 }

@@ -110,4 +110,13 @@ public class RegistryService {
         return categoryResponse;
     }
 
+    public List<Registry> findByCategory(String categoryId) {
+        Category category = this.categoryService.findOne(categoryId);
+        return repository.findByCategory(category);
+    }
+
+    public List<Registry> findByType(String typeId) {
+        Type type = this.typeService.findOne(typeId);
+        return repository.findByType(type);
+    }
 }

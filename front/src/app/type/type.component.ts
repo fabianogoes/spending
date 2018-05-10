@@ -13,6 +13,7 @@ export class TypeComponent implements OnInit {
   public enableEdit: Boolean = true;
   public types: Array<Type>;
   public pattern: string;
+  public typesLength: number;
 
   constructor(private service: TypeService) {
   }
@@ -56,7 +57,10 @@ export class TypeComponent implements OnInit {
   public onList() {
     console.log('onList()...');
     this.enableEdit = false;
-    this.service.findAll().subscribe(data => this.types = data);
+    this.service.findAll().subscribe(data => {
+      this.types = data;
+      this.typesLength = this.types.length;
+    });
   }
 
   public onAddPattern(){

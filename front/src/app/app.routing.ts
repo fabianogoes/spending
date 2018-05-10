@@ -8,6 +8,8 @@ const MAINMENU_ROUTES: Routes = [
     { path: '', redirectTo: '/dash', pathMatch: 'full' },
     { path: 'dash', component: DashComponent },
     { path: 'registry', component: RegistryComponent },
+    { path: 'registry/category/:categoryId', component: RegistryComponent },
+    { path: 'registry/type/:typeId', component: RegistryComponent },
     { path: 'category', component: CategoryComponent },
     { path: 'type', component: TypeComponent },
     { path: 'upload', component: UploadComponent }

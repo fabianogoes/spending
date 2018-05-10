@@ -15,7 +15,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let obj of rankingByCategory">
-                    <td>{{obj.category.name}}</td>
+                    <td>
+                        <a [routerLink]="['/registry/category', obj.category.id]" href="#">
+                        {{obj.category.name}}
+                      </a>
+                    </td>
                     <td>{{obj.total | currency:'BRL':true:'1.2-2'}}</td>
                     <td class="text-center">{{obj.count}}</td>
                 </tr>
@@ -40,7 +44,11 @@
                     </thead>
                 <tbody>
                   <tr *ngFor="let obj of rankingByType">
-                      <td>{{obj.type.name}}</td>
+                      <td>
+                          <a [routerLink]="['/registry/type', obj.type.id]" href="#">
+                            {{obj.type.name}}
+                          </a>
+                      </td>
                       <td>{{obj.total | currency:'BRL':true:'1.2-2'}}</td>
                       <td class="text-center">{{obj.count}}</td>
                   </tr>

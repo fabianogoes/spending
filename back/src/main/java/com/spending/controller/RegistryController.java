@@ -56,4 +56,16 @@ public class RegistryController {
         this.service.delete(registryId);
     }
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity getByCategory(@PathVariable String categoryId) {
+        log.info("getByCategory({})", categoryId);
+        return ResponseEntity.ok(this.service.findByCategory(categoryId));
+    }
+
+    @GetMapping("/type/{typeId}")
+    public ResponseEntity getByType(@PathVariable String typeId) {
+        log.info("getByType({})", typeId);
+        return ResponseEntity.ok(this.service.findByType(typeId));
+    }
+
 }

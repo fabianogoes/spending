@@ -25,6 +25,20 @@ export class RegistryService {
       .catch(this.handleError);
   }
 
+  findByCategory(categoryId): Observable<Registry[]> {
+    const endPoint = `${this.url}/category/${categoryId}`;
+    return this.http.get(endPoint)
+      .map((response: Response) => <Registry[]>response.json())
+      .catch(this.handleError);
+  }
+
+  findByType(typeId): Observable<Registry[]> {
+    const endPoint = `${this.url}/type/${typeId}`;
+    return this.http.get(endPoint)
+      .map((response: Response) => <Registry[]>response.json())
+      .catch(this.handleError);
+  }
+
   findAllCategories(): Observable<Category[]> {
     const url = 'http://localhost:8080/categories';
     return this.http.get(url)
